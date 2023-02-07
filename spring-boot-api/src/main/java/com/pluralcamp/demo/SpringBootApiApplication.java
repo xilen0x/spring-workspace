@@ -20,18 +20,17 @@ public class SpringBootApiApplication {
 	}
 	
 	/*Metodos(opcionales) q se ejecutan al arrancar la app*/
-	@EventListener({ApplicationReadyEvent.class})
-	public void applicationReadyEvent() {
-		if(isRunningInsideDocker() == false) {
-			System.out.println("Application started ... launching browser now");
-			browse("http://localhost:8080/swagger-ui/index.html");
-		}else {
-			System.out.println("You are inside a docker environtment");
-		}
-	}
-	
-	
-	public static Boolean isRunningInsideDocker() {
+	@EventListener({ ApplicationReadyEvent.class })
+    public void applicationReadyEvent() {
+        if (isRunningInsideDocker() == false) {
+            System.out.println("Application started ... launching browser now");
+            browse("http://localhost:9090/swagger-ui/index.html");
+        } else {
+            System.out.println("You are inside a docker environment");
+        }
+    }
+    
+    public static Boolean isRunningInsideDocker() {
         try (Stream<String> stream = Files.lines(Paths.get("/proc/1/cgroup"))) {
             return stream.anyMatch(line -> line.contains("/docker"));
         } catch (IOException e) {

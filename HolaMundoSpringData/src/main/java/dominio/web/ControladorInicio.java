@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import dominio.dao.IPersonaDao;
+import dominio.servicio.IPersonaService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -13,12 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 public class ControladorInicio {
 	
 	@Autowired
-	private IPersonaDao personaDAO;
+	private IPersonaService personaService;
 	
 	@GetMapping("/") 
 	public String inicio(Model model) {
 		
-		var personas = personaDAO.findAll();
+		var personas = personaService.listarPersonas();
 		
 		model.addAttribute("PERSONA", personas);
 		

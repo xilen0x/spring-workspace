@@ -1,13 +1,12 @@
 package dominio.domain;
 
 import java.io.Serializable;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "PERSONA")// Este nombre corresp. al nombre de la tabla de la DB
+@Table(name = "persona")// Este nombre corresp. al nombre de la tabla de la DB
 public class Persona implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -15,7 +14,6 @@ public class Persona implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_persona; //PK
-	
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -46,6 +44,12 @@ public class Persona implements Serializable{
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public Long getId_persona() {
+		return id_persona;
+	}
+	public void setId_persona(Long id_persona) {
+		this.id_persona = id_persona;
 	}
 
 	
